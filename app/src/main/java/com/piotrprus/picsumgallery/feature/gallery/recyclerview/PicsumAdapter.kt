@@ -2,8 +2,8 @@ package com.piotrprus.picsumgallery.feature.gallery.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import com.piotrprus.picsumgallery.data.model.Picsum
 import com.piotrprus.picsumgallery.databinding.ItemPicsumBinding
 
@@ -15,8 +15,8 @@ private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Picsum>() {
         oldItem == newItem
 }
 
-class PicsumAdapter(private val onCLickAction: (Picsum) -> Unit) :
-    ListAdapter<Picsum, PicsumViewHolder>(DIFF_CALLBACK) {
+class PicsumAdapter(private val onCLickAction: (Picsum?) -> Unit) :
+    PagingDataAdapter<Picsum, PicsumViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicsumViewHolder {
         val binding = ItemPicsumBinding.inflate(
             LayoutInflater.from(

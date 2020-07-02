@@ -9,10 +9,12 @@ import com.piotrprus.picsumgallery.databinding.ItemPicsumBinding
 class PicsumViewHolder(private val binding: ItemPicsumBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(picsum: Picsum) {
-        binding.itemPicsumImage.load(picsum.downloadUrl) {
-            placeholder(R.drawable.ic_placeholder)
-            crossfade(true)
+    fun bind(picsum: Picsum?) {
+        picsum?.let {
+            binding.itemPicsumImage.load(picsum.downloadUrl) {
+                placeholder(R.drawable.ic_placeholder)
+                crossfade(true)
+            }
         }
     }
 }
