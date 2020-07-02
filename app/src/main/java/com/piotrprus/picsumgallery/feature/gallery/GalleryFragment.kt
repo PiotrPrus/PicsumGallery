@@ -29,8 +29,7 @@ class GalleryFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun start() {
         setupRecyclerView()
         observeLiveData()
     }
