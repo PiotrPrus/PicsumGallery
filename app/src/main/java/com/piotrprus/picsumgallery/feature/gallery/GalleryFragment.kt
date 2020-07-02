@@ -42,7 +42,9 @@ class GalleryFragment : BaseFragment() {
     }
 
     private fun setupRecyclerView() {
-        picsumAdapter = PicsumAdapter()
+        picsumAdapter = PicsumAdapter() {
+            navigateToDetailView(it)
+        }
         binding.picsumGridRV.apply {
             adapter = picsumAdapter
             addItemDecoration(PicsumItemDecoration())

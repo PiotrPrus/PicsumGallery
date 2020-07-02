@@ -15,7 +15,8 @@ private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Picsum>() {
         oldItem == newItem
 }
 
-class PicsumAdapter : ListAdapter<Picsum, PicsumViewHolder>(DIFF_CALLBACK) {
+class PicsumAdapter(private val onCLickAction: (Picsum) -> Unit) :
+    ListAdapter<Picsum, PicsumViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicsumViewHolder {
         val binding = ItemPicsumBinding.inflate(
             LayoutInflater.from(
@@ -28,6 +29,8 @@ class PicsumAdapter : ListAdapter<Picsum, PicsumViewHolder>(DIFF_CALLBACK) {
     }
 
     override fun onBindViewHolder(holder: PicsumViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val picsum = getItem(position)
+        holder.itemView.setOnClickListener { onCLickAction(picsum) }
+        holder.bind(picsum)
     }
 }
