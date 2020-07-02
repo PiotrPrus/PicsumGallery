@@ -25,10 +25,11 @@
                 android:layout_marginBottom="16dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_placeholder"
-                app:layout_constraintBottom_toTopOf="@id/detailFragmentShareFAB"
+                app:layout_constraintBottom_toTopOf="@id/fragmentDetailAuthorLabel"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/fragmentDetailAuthorLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/author"
