@@ -1,16 +1,16 @@
 package com.piotrprus.picsumgallery.feature.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.piotrprus.picsumgallery.R
+import com.piotrprus.picsumgallery.base.BaseActivity
+import com.piotrprus.picsumgallery.base.LayoutResId
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+@LayoutResId(R.layout.activity_main)
+class MainActivity : BaseActivity() {
 
     private val viewModel: MainSharedViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun start() {
+        super.start()
     }
 }
