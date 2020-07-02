@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
+    single { provideOkHttpClient() }
     single { provideRetrofitService<LoremPicsumApi>(get(), Constants.PICSUM_BASE_URL) }
 }
 
