@@ -1,6 +1,8 @@
 package com.piotrprus.picsumgallery
 
 import android.app.Application
+import com.piotrprus.picsumgallery.common.di.networkModule
+import com.piotrprus.picsumgallery.common.di.repositoryModule
 import com.piotrprus.picsumgallery.common.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -15,7 +17,7 @@ class PicsumGalleryApp : Application() {
             androidLogger()
             androidContext(this@PicsumGalleryApp)
             modules(
-                viewModelModule
+                viewModelModule, networkModule, repositoryModule
             )
         }
 
