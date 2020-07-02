@@ -15,13 +15,12 @@ abstract class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (this::class.annotations
+        return (this::class.annotations
             .filterIsInstance(LayoutResId::class.java)
             .firstOrNull())
             ?.let {
-                val view = inflater.inflate(it.resId, container, false)
+                inflater.inflate(it.resId, container, false)
             }
-        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

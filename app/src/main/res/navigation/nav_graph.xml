@@ -8,10 +8,11 @@
     <fragment
         android:id="@+id/galleryFragment"
         android:name="com.piotrprus.picsumgallery.feature.gallery.GalleryFragment"
-        android:label="fragment_gallery"
+        android:label="GalleryFragment"
         tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.piotrprus.picsumgallery.feature.detail.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail" />
 </navigation>
