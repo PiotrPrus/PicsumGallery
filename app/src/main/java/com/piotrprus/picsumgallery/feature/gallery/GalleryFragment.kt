@@ -37,6 +37,7 @@ class GalleryFragment : BaseFragment() {
 
     private fun observeLiveData() {
         viewModel.pictures.observe { picsumAdapter?.submitList(it) }
+        viewModel.loadingVisibility.observe { setLoadingVisibility(it) }
     }
 
     private fun setupRecyclerView() {
@@ -51,6 +52,11 @@ class GalleryFragment : BaseFragment() {
                 false
             )
         }
+    }
+
+    private fun setLoadingVisibility(isVisible: Boolean?) {
+        binding.fragmentGalleryProgressBar.visibility =
+            if (isVisible == true) View.VISIBLE else View.INVISIBLE
     }
 
     override fun onDestroyView() {
