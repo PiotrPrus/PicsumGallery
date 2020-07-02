@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.piotrprus.picsumgallery.base.BaseFragment
+import com.piotrprus.picsumgallery.data.model.Picsum
 import com.piotrprus.picsumgallery.databinding.FragmentGalleryBinding
 import com.piotrprus.picsumgallery.feature.gallery.recyclerview.PicsumAdapter
 import com.piotrprus.picsumgallery.feature.gallery.recyclerview.PicsumItemDecoration
@@ -51,6 +53,11 @@ class GalleryFragment : BaseFragment() {
                 false
             )
         }
+    }
+
+    private fun navigateToDetailView(picsum: Picsum) {
+        val action = GalleryFragmentDirections.actionGalleryFragmentToDetailFragment(picsum)
+        findNavController().navigate(action)
     }
 
     private fun setLoadingVisibility(isVisible: Boolean?) {

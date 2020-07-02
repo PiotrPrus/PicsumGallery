@@ -1,6 +1,8 @@
 package com.piotrprus.picsumgallery.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 // Data structure from https://picsum.photos/v2/list
 //{
@@ -12,6 +14,7 @@ import com.google.gson.annotations.SerializedName
 //    "download_url": "https://picsum.photos/..."
 //}
 
+@Parcelize
 data class Picsum(
     val id: Int,
     val author: String,
@@ -19,4 +22,4 @@ data class Picsum(
     val height: Int,
     val url: String,
     @SerializedName("download_url") val downloadUrl: String
-)
+) : Parcelable
