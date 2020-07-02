@@ -1,9 +1,11 @@
 package com.piotrprus.picsumgallery
 
 import android.app.Application
+import com.piotrprus.picsumgallery.common.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import timber.log.Timber
 
 class PicsumGalleryApp : Application() {
 
@@ -12,7 +14,13 @@ class PicsumGalleryApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@PicsumGalleryApp)
-            modules()
+            modules(
+                viewModelModule
+            )
+        }
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
         }
     }
 }
