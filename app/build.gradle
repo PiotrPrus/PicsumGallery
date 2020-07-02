@@ -3,59 +3,63 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-	compileSdkVersion 30
-	buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
 
-	defaultConfig {
-		applicationId "com.piotrprus.picsumgallery"
-		minSdkVersion 23
-		targetSdkVersion 30
-		versionCode 1
-		versionName "1.0"
+    defaultConfig {
+        applicationId "com.piotrprus.picsumgallery"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
 
-		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-	}
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
 
-	buildTypes {
-		release {
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-		}
-	}
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
-	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-	api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-	implementation 'androidx.core:core-ktx:1.3.0'
-	implementation 'androidx.appcompat:appcompat:1.1.0'
-	implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-	implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-	// Koin DI
-	def koin_version = "2.1.6"
-	implementation "org.koin:koin-android:$koin_version"
-	implementation "org.koin:koin-android-scope:$koin_version"
-	implementation "org.koin:koin-android-viewmodel:$koin_version"
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // Koin DI
+    def koin_version = "2.1.6"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-scope:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 
-	// Navigation
-	def nav_version = "2.3.0"
-	implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-	implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // Navigation
+    def nav_version = "2.3.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-	// Timber logger
-	implementation 'com.jakewharton.timber:timber:4.7.1'
+    // Timber logger
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
-	// Retrofit
-	implementation 'com.squareup.retrofit2:retrofit:2.8.1'
-	implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
 
-	// OkHttp
-	implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    // OkHttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 
 
-	testImplementation 'junit:junit:4.12'
-	androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-	androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }
