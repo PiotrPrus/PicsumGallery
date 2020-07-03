@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,7 @@ import com.piotrprus.picsumgallery.feature.gallery.recyclerview.PicsumItemDecora
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class GalleryFragment : BaseFragment() {
 
@@ -51,26 +53,39 @@ class GalleryFragment : BaseFragment() {
         }
         picsumAdapter?.addLoadStateListener { loadState ->
             binding.fragmentGalleryProgressBar.isVisible = loadState.refresh is LoadState.Loading
-        }
-        binding.picsumGridRV.apply {
-            adapter = picsumAdapter
-            addItemDecoration(PicsumItemDecoration())
-            layoutManager = GridLayoutManager(
-                requireContext(),
-                2,
-                RecyclerView.VERTICAL,
-                false
-            )
-        }
-    }
 
-    private fun navigateToDetailView(picsum: Picsum) {
-        val action = GalleryFragmentDirections.actionGalleryFragmentToDetailFragment(picsum)
-        findNavController().navigate(action)
-    }
+            val errorState = loadState.source.append as? LoadState.Error
+                ?: loadState.source.prepend as? LoadState.Error
+                ?: loadState.append as? LoadState.Error
+                ?: loadState.prepend as? LoadState.Error
+            errorState?.let {
+                Toast.makeText(
+                    requireContext(),
+                    "An error occurs: ${it.error}",
+                    Toast.LENGTH_LONG
+                ).show()
+                Timber.e(it.error, "An error occurs during fetching data or by the paging library")
+            }
+        }
+            binding.picsumGridRV.apply {
+                adapter = picsumAdapter
+                addItemDecoration(PicsumItemDecoration())
+                layoutManager = GridLayoutManager(
+                    requireContext(),
+                    2,
+                    RecyclerView.VERTICAL,
+                    false
+                )
+            }
+        }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        private fun navigateToDetailView(picsum: Picsum) {
+            val action = GalleryFragmentDirections.actionGalleryFragmentToDetailFragment(picsum)
+            findNavController().navigate(action)
+        }
+
+        override fun onDestroyView() {
+            super.onDestroyView()
+            _binding = null
+        }
     }
-}
